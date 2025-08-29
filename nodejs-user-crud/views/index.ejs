@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Management</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <h2>Add User</h2>
+    <form action="/add" method="POST">
+        <input name="name" placeholder="Name" required>
+        <input name="email" type="email" placeholder="Email" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>User List</h2>
+    <form action="/deleteselected" method="POST">
+        <table border="1">
+            <tr>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Edit</th>
+            </tr>
+            <% users.forEach(user=> { %>
+                <tr>
+                    <td><input type="checkbox" name="ids" value="<%= user.id %>"></td>
+                    <td>
+                        <%= user.name %>
+                    </td>
+                    <td>
+                        <%= user.email %>
+                    </td>
+                    <td><a href="/edit/<%= user.id %>">Edit</a></td>
+                </tr>
+                <% }) %>
+        </table>
+        <button type="submit">Delete Selected</button>
+    </form>
+
+    <form action="/deleteall" method="POST" style="margin-top: 10px;">
+        <button type="submit">Delete All</button>
+    </form>
+</body>
+
+</html>
